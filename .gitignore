@@ -1,5 +1,5 @@
 HELP.md
-.gradle
+aop/.gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
@@ -19,6 +19,7 @@ bin/
 
 ### IntelliJ IDEA ###
 .idea
+*.xml
 *.iws
 *.iml
 *.ipr
@@ -35,3 +36,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+.idea/*
+
