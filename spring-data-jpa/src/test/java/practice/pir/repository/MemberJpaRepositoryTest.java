@@ -13,14 +13,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Transactional
+@Rollback(value = false)
 class MemberJpaRepositoryTest {
 
     @Autowired
     MemberJpaRepository memberJpaRepository;
 
     @Test
-    @Transactional
-    @Rollback(value = false)
     public void testMember(){
         Member testUser = new Member("testUser");
         Member savedMember = memberJpaRepository.save(testUser);
