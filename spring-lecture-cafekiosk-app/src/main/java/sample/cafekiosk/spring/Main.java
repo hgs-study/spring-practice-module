@@ -1,4 +1,4 @@
-package sample.cafekiosk;
+package sample.cafekiosk.spring;
 
 public class Main {
     public static void main(String[] args) {
