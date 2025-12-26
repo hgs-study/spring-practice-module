@@ -1,0 +1,14 @@
+server:
+  port: 8082
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        consumer-in-0:
+          destination: batch-in-topic
+          group: batch-in-group
+          consumer:
+            batch-mode: true
+        consumer-out-0:
+          destination: batch-out-topic
