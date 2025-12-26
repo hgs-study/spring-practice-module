@@ -40,16 +40,22 @@ import java.util.stream.IntStream
 
 private val logger = KotlinLogging.logger {}
 
+@Profile("batch-produce")
 @SpringBootApplication
 class KafkaBatchSampleApplication {
     @KafkaListener(id = "batch-out", topics = ["batch-out"])
     fun listen(`in`: String?) {
         println(`in`)
     }
+    @KafkaListener(id = "batch-out-group", topics = ["batch-out-topic"])
+    fun bathOutGrouplistenA(`in`: String?) {
+        logger.info { "bathOutGrouiplisten : $`in`" }
+    }
 
     @Bean
     fun runner(template: KafkaTemplate<ByteArray?, ByteArray?>, environment: Environment): ApplicationRunner {
-        return ApplicationRunner { args: ApplicationArguments? -> IntStream.range(0, 10).forEach { i: Int -> template.send("batch-in",
+        return ApplicationRunner { args: ApplicationArguments? -> IntStream.range(0, 10).forEach { i: Int ->
+            template.send("batch-in-topic",
                 if (environment.activeProfiles.contains("batch-produce"))
                     "\"batch-test$i\"".toByteArray()
                 else
